@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+*.log
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+*.json
+
+.prettierrc
+README.md
+
