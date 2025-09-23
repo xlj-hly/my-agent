@@ -1,14 +1,29 @@
 {
   "name": "my-agent",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/main.js",
+  "description": "AI Agent CLI Tool",
+  "main": "dist/cli.js",
   "type": "module",
+  "bin": {
+    "my-agent": "./dist/cli.js",
+    "agent": "./dist/cli.js"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "preferGlobal": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "node esbuild.config.mjs",
     "dev": "node esbuild.config.mjs --watch",
     "start": "node dist/cli.js",
     "start:watch": "node --watch dist/cli.js",
+    "mcp:server": "node dist/mcp/main.js",
+    "prepublishOnly": "npm run build",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "format": "prettier . --write",
@@ -19,8 +34,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.63.0",
+    "@langchain/openai": "^0.6.13",
+    "@modelcontextprotocol/sdk": "^1.18.1",
+    "dotenv": "^17.2.2",
     "ink": "^6.3.1",
     "ink-text-input": "^6.0.0",
+    "langchain": "^0.3.34",
     "meow": "^14.0.0",
     "react": "^19.1.1"
   },

@@ -17,8 +17,8 @@
 
     /* 严格类型检查 */
     "strict": true,                        // 启用所有严格类型检查
-    "noUnusedLocals": true,                // 检查未使用的局部变量
-    "noUnusedParameters": true,            // 检查未使用的函数参数
+    "noUnusedLocals": false,                // 检查未使用的局部变量
+    "noUnusedParameters": false,            // 检查未使用的函数参数
     "noFallthroughCasesInSwitch": true,    // 防止 switch 语句意外 fallthrough
     "noUncheckedSideEffectImports": false, // 放宽：避免与三方副作用导入冲突
     "erasableSyntaxOnly": false,           // 放宽：减少对语法的额外限制

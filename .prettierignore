@@ -9,5 +9,5 @@ pnpm-lock.yaml
 *.json
 
 .prettierrc
-README.md
+*.md
 

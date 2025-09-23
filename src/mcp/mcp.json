@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+      "context7": {
+        "command": "node",
+        "type": "stdio",
+        "args": ["D:/env/nvm/node_global/node_modules/@upstash/context7-mcp/dist/index.js"]
+      },
+      "sequential-thinking": {
+        "command": "node",
+        "type": "stdio",
+        "args": ["D:/env/nvm/node_global/node_modules/@modelcontextprotocol/server-sequential-thinking/dist/index.js"]
+      }
+    }
+  }
