@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@agent-core/*": ["./packages/@agent-core/*"],
+      "@agent-tools/*": ["./packages/@agent-tools/*"],
+      "@agent-services/*": ["./packages/@agent-services/*"],
+      "@agent-agents/*": ["./packages/@agent-agents/*"]
+    }
+  },
+  "include": ["**/*.ts", "packages/**/*.ts"],
+  "exclude": ["dist", "**/*.test.ts", "**/*.spec.ts", "node_modules"]
+}

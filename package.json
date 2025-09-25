@@ -1,60 +1,57 @@
 {
-  "name": "my-agent",
+  "name": "multi-agent-orchestration-system",
   "version": "1.0.0",
-  "description": "AI Agent CLI Tool",
-  "main": "dist/cli.js",
+  "description": "Multi-Agent Orchestration System - 可插拔的多Agent编排系统",
+  "main": "app/index.js",
   "type": "module",
-  "bin": {
-    "my-agent": "./dist/cli.js",
-    "agent": "./dist/cli.js"
-  },
+  "workspaces": [
+    "app/packages/*"
+  ],
   "files": [
-    "dist/**/*",
+    "app/**/*",
     "README.md",
     "LICENSE"
   ],
-  "preferGlobal": true,
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "node esbuild.config.mjs",
-    "dev": "node esbuild.config.mjs --watch",
-    "start": "node dist/cli.js",
-    "start:watch": "node --watch dist/cli.js",
-    "mcp:server": "node dist/mcp/main.js",
-    "prepublishOnly": "npm run build",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "build": "npm run build:packages && npm run build:app",
+    "build:packages": "npm run build:core && npm run build:tools && npm run build:services && npm run build:agents",
+    "build:core": "tsc -p app/packages/@agent-core/tsconfig.json",
+    "build:tools": "tsc -p app/packages/@agent-tools/tsconfig.json",
+    "build:services": "tsc -p app/packages/@agent-services/tsconfig.json",
+    "build:agents": "tsc -p app/packages/@agent-agents/tsconfig.json",
+    "build:app": "tsc -p app/tsconfig.json",
+    "dev": "npm run build && node app/index.js --watch",
+    "start": "node app/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint app --ext .ts,.tsx",
+    "lint:fix": "eslint app --ext .ts,.tsx --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf app/**/dist app/**/build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.63.0",
-    "@langchain/openai": "^0.6.13",
-    "@modelcontextprotocol/sdk": "^1.18.1",
-    "dotenv": "^17.2.2",
-    "ink": "^6.3.1",
-    "ink-text-input": "^6.0.0",
-    "langchain": "^0.3.34",
-    "meow": "^14.0.0",
-    "react": "^19.1.1"
+    "dotenv": "^17.2.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^24.5.2",
-    "@types/react": "^19.1.13",
-    "esbuild": "^0.25.10",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.4.0",
+    "jest": "^29.7.0",
     "prettier": "^3.6.2",
-    "tsx": "^4.20.5",
+    "rimraf": "^5.0.10",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.44.0"
   }

@@ -1,29 +1,36 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
 import tseslint from 'typescript-eslint';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default defineConfig([
-  globalIgnores(['dist', 'node_modules', 'coverage']),
   {
-    files: ['**/*.{ts,tsx}'], // 源码文件
+    ignores: ['dist/**', 'node_modules/**', 'coverage/**', 'src/**'],
+  },
+  {
+    files: ['app/**/*.{ts,tsx}'],   // 源码文件
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-    ],
+       ...tseslint.configs.recommended],
     languageOptions: {
       ecmaVersion: 'latest',
-      globals: globals.node, // Node.js 全局变量
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
     },
     rules: {
-      // Agent开发中的放宽规则
-      '@typescript-eslint/no-explicit-any': 'off', // Agent开发中经常需要处理动态类型
-      '@typescript-eslint/no-unused-vars': 'warn', // 降级为警告而不是错误
+      // 多Agent系统开发规则
+      '@typescript-eslint/no-explicit-any': 'warn', // 允许any类型但给出警告
+      '@typescript-eslint/no-unused-vars': 'warn',
+      // '@typescript-eslint/explicit-function-return-type': 'off',
+      // '@typescript-eslint/explicit-module-boundary-types': 'off',
+      // '@typescript-eslint/no-non-null-assertion': 'warn',
+      // 'prefer-const': 'error',
+      // 'no-var': 'error',
+      // 'no-console': 'warn',
     },
   },
-  // 关闭与 Prettier 冲突的 ESLint 规则（放在最后）
   eslintConfigPrettier,
 ]);

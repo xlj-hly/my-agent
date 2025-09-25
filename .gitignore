@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+###### 零食
+docs-test/
+
+coverage

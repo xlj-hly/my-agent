@@ -1,46 +1,48 @@
 {
   "compilerOptions": {
     /* 基础编译配置 */
-    "target": "ES2023",                    // 编译目标：ES2023 语法
-    "lib": ["ES2023"],                     // 可用的 JavaScript 库：ES2023
-    "module": "ESNext",                 // 模块系统：ESNext
-    "types": ["node"],                     // 包含的类型定义：Node.js
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "types": ["node", "jest"],
 
     /* 性能优化 */
-    "skipLibCheck": true,                  // 跳过库文件类型检查，提高编译速度
+    "skipLibCheck": true,
 
     /* 模块解析配置 */
-    "moduleResolution": "bundler",        // 模块解析：bundler
-    "esModuleInterop": true,               // 允许 CommonJS 和 ES 模块互操作
-    "forceConsistentCasingInFileNames": true, // 强制文件名大小写一致
-    "resolveJsonModule": true,             // 允许导入 JSON 文件
+    "moduleResolution": "bundler",             // 模块解析：bundler
+    "esModuleInterop": true,                   // 允许 CommonJS 和 ES 模块互操作
+    "allowSyntheticDefaultImports": true,      // 允许合成默认导入
+    "forceConsistentCasingInFileNames": true,  // 强制文件名大小写一致
+    "resolveJsonModule": true,                 // 允许导入 JSON 文件
 
     /* 严格类型检查 */
-    "strict": true,                        // 启用所有严格类型检查
-    "noUnusedLocals": false,                // 检查未使用的局部变量
-    "noUnusedParameters": false,            // 检查未使用的函数参数
-    "noFallthroughCasesInSwitch": true,    // 防止 switch 语句意外 fallthrough
-    "noUncheckedSideEffectImports": false, // 放宽：避免与三方副作用导入冲突
-    "erasableSyntaxOnly": false,           // 放宽：减少对语法的额外限制
+    "strict": true,                            // 启用所有严格类型检查
+    "noUnusedLocals": true,                    // 禁止未使用的局部变量
+    "noUnusedParameters": true,                // 禁止未使用的参数
+    "noFallthroughCasesInSwitch": true,        // 防止 switch 语句意外 fallthrough
+    "noImplicitReturns": true,                  // 禁止函数没有显式返回值
+    "noImplicitOverride": true,                 // 禁止重写非重写的方法
 
-    /* 输出配置（由 esbuild 负责产物，tsc 仅做类型检查） */
-    // "outDir": "./dist",                    // 编译输出目录（打包器产物目录由 esbuild 决定）
-    // "rootDir": "./src",                    // 源码根目录（类型检查无需该项）
-    // "declaration": true,                   // 生成 .d.ts 类型声明文件
-    // "declarationMap": true,                // 生成声明文件的源码映射
-    // "sourceMap": true,                     // 生成源码映射文件，便于调试
+    /* 输出配置 */
+    "outDir": "./dist",                         // 编译输出目录 
+    "rootDir": "./app",
+    "declaration": true,                        // 生成 .d.ts 类型声明文件
+    "declarationMap": true,                     // 生成声明文件的源码映射
+    "sourceMap": true,                          // 生成源码映射文件，便于调试
 
-    /* JSX 配置 */
-    "jsx": "react-jsx",                    // JSX 处理方式：React 17+ 自动转换
+    // /* JSX 配置 */
+    // "jsx": "react-jsx",                    // JSX 处理方式：React 17+ 自动转换
+
 
     /* 高级配置 */
-    "verbatimModuleSyntax": false,         // 放宽：结合 esModuleInterop 降低导入摩擦
+    "verbatimModuleSyntax": false,
     // "moduleDetection": "force",            // 强制所有文件被视为模块（不必要）
-    // "allowImportingTsExtensions": true,    // 允许导入 .ts/.tsx 扩展名（需要 noEmit: true）
-    // "noEmit": true,                       // 不生成输出文件（构建工具模式）
+    "allowImportingTsExtensions": false,     // 允许导入 .ts/.tsx 扩展名（需要 noEmit: true）
+    "noEmit": false                         // 不生成输出文件（构建工具模式）
   },
   "include": [
-    "src/**/*"                             // 包含的文件：src 目录下所有文件
+    "app/**/*"                              // 包含：app 目录下所有文件
   ],
   "exclude": [
     "node_modules",                        // 排除：node_modules 目录
