@@ -198,29 +198,34 @@ function calculateStatistics(
         result.mode = calculateMode(data);
         break;
         
-      case 'variance':
+      case 'variance': {
         const mean = result.mean || calculateMean(data);
         result.variance = data.reduce((sum, num) => sum + Math.pow(num - mean, 2), 0) / data.length;
         break;
+      }
         
-      case 'stddev':
+      case 'stddev': {
         const variance = result.variance || calculateVariance(data);
         result.stddev = Math.sqrt(variance);
         break;
+      }
         
-      case 'min':
+      case 'min': {
         result.min = Math.min(...data);
         break;
+      }
         
-      case 'max':
+      case 'max': {
         result.max = Math.max(...data);
         break;
+      }
         
-      case 'range':
+      case 'range': {
         result.range = Math.max(...data) - Math.min(...data);
         break;
+      }
         
-      case 'percentile':
+      case 'percentile': {
         const p = percentile || 50;
         if (p === 25) result.percentile25 = calculatePercentile(sortedData, 25);
         else if (p === 50) result.percentile50 = calculatePercentile(sortedData, 50);
@@ -229,6 +234,7 @@ function calculateStatistics(
         else if (p === 95) result.percentile95 = calculatePercentile(sortedData, 95);
         else if (p === 99) result.percentile99 = calculatePercentile(sortedData, 99);
         break;
+      }
     }
   }
   

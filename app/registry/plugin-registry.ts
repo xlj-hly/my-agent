@@ -92,7 +92,9 @@ export class PluginRegistry implements IPluginRegistry {
       for (const agent of plugin.agents) {
         try {
           await this.agentRegistry.unregisterAgent(agent.name);
-        } catch {}
+        } catch {
+          // 忽略卸载错误
+        }
       }
     }
     // 卸载 Service
@@ -100,7 +102,9 @@ export class PluginRegistry implements IPluginRegistry {
       for (const svc of plugin.services) {
         try {
           await this.serviceRegistry.unregisterService(svc.name);
-        } catch {}
+        } catch {
+          // 忽略卸载错误
+        }
       }
     }
 

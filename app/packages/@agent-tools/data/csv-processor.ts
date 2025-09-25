@@ -240,21 +240,25 @@ function performCsvOperation(input: CsvProcessorInput): CsvProcessorOutput {
     case 'generate':
       return generateCsv(input.data!, delimiter);
     
-    case 'filter':
+    case 'filter': {
       const parsed = parseCsv(input.csvData!, delimiter);
       return filterCsv(parsed.parsed!, input.filters!);
+    }
     
-    case 'sort':
+    case 'sort': {
       const parsedForSort = parseCsv(input.csvData!, delimiter);
       return sortCsv(parsedForSort.parsed!, input.sortBy!, input.sortOrder || 'asc');
+    }
     
-    case 'aggregate':
+    case 'aggregate': {
       const parsedForAgg = parseCsv(input.csvData!, delimiter);
       return aggregateCsv(parsedForAgg.parsed!, input.groupBy!, input.aggregations!);
+    }
     
-    case 'transform':
+    case 'transform': {
       const parsedForTransform = parseCsv(input.csvData!, delimiter);
       return transformCsv(parsedForTransform.parsed!, input.transformations!);
+    }
     
     default:
       throw new Error(`不支持的操作类型: ${input.operation}`);

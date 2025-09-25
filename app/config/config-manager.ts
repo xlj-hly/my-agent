@@ -19,8 +19,7 @@ export class ConfigManager {
     updater: Partial<SystemConfig> | ((prev: SystemConfig) => SystemConfig)
   ): Promise<void> {
     if (typeof updater === 'function') {
-      // eslint-disable-next-line @typescript-eslint/ban-types
-      this.config = (updater as Function)(this.config);
+      this.config = updater(this.config);
     } else {
       this.config = { ...this.config, ...updater } as SystemConfig;
     }

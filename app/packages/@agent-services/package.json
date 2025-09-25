@@ -1,0 +1,35 @@
+{
+  "name": "@agent-services",
+  "version": "1.0.0",
+  "description": "Agent服务函数包 - 提供记忆服务、LLM服务、通信服务等",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "agent",
+    "services",
+    "memory",
+    "llm",
+    "communication",
+    "storage"
+  ],
+  "author": "Multi-Agent System Team",
+  "license": "MIT",
+  "dependencies": {
+    "@agent-core": "file:../@agent-core"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ]
+}
+
